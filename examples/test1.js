@@ -10,12 +10,13 @@ router.get('/', (ctx, next) => {
   ctx.body = 'hello word'
 })
 
+router.register('/user', [ 'get' ], (ctx, next) => {
+  ctx.body = 'user'
+})
+
 router.use((ctx, next) => {
   let { path } = ctx
   console.log(path)
-  if (path === 'use') {
-    ctx.body = 'use'
-  }
 })
 
 app.use(router.routes())
