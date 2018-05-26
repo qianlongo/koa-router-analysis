@@ -30,6 +30,7 @@
     "jsdoc-to-markdown": "^1.1.1",
     "koa": "2.2.0",
     "mocha": "^2.0.1",
+    "nodemon": "^1.17.5",
     "should": "^6.0.3",
     "supertest": "^1.0.1"
   },

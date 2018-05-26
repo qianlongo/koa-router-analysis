@@ -8,7 +8,7 @@ const router = new Router()
 
 router.get('/*', (ctx, next) => {
   ctx.body = 'hello word'
-  console.log('hello word')
+  console.log('hello word', ctx._matchedRoute, ctx._matchedRouteName)
   next()
 })
 
