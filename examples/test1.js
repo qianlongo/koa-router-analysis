@@ -23,9 +23,21 @@ const router = new Router()
 //   next()
 // })
 
-router.register('/user/:id', [ 'get' ], (ctx, next) => {
+router.register('/users/:user', [ 'get' ], (ctx, next) => {
   ctx.body = 'user'
   console.log('user', ctx.params)
+  next()
+})
+
+router.param('user', async (user, ctx, next) => {
+  console.log(user)
+  let users = [ '11', '12', '13']
+  this.user = users[user]
+
+  if (!this.user) {
+    return this.body = 404
+  }
+
   next()
 })
 
