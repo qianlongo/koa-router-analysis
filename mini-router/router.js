@@ -14,13 +14,9 @@ module.exports = class Router {
   }
   regMethods () {
     this.methods.forEach((method) => {
-      Object.assign(Router.prototype, {
-        [ method.toLowerCase() ]: function (path, middleware) {
-          middleware = [].slice.call(arguments, 1)
-  
-          this.register(path, [ method ], middleware)
-        }
-      })
+      Router.prototype[ method.toLowerCase() ] = function (path) {
+        this.register(path, [ method ], [].slice.call(arguments, 1))
+      }
     })
   }
   // 注册路由的关键方法

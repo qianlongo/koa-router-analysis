@@ -1,33 +1,32 @@
 const Koa = require('koa')
 const Router = require('../router')
-const PORT = 3000
 
 const app = new Koa()
 const router = new Router()
+const PORT = 8080
 
-let sHtml = 'hello world'
+let sHtml = 'hello world '
 
-router.get('/a', (ctx, next) => {
-  console.log('a----')
+router.get('*', async (ctx, next) => {
+  ctx.body = sHtml + '*'
   next()
 })
 
-router.get('*', (ctx, next) => {
-  sHtml = '*----'
-  console.log(sHtml)
-  next()
+router.get('/name', async (ctx, next) => {
+  ctx.body = sHtml + '/name'
 })
 
-router.get('/b', (ctx, next) => {
-  sHtml = 'b----'
-  console.log(sHtml)
-  ctx.body = sHtml
+router.get('/sex*', async (ctx, next) => {
+  ctx.body = sHtml + '/sex'
+  // next()
 })
 
-router.get([ '/c', '/d' ], (ctx, next) => {
-  sHtml = 'c----d'
-  console.log(sHtml)
-  ctx.body = sHtml
+router.get('/sex/boy', async (ctx, next) => {
+  ctx.body = sHtml + '/sex/boy'
+})
+
+router.get('/age/:id', async (ctx, next) => {
+  ctx.body = sHtml + ctx.path
 })
 
 app.use(router.routes())
